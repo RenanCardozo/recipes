@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <title></title>
+</head>
+
+<body class="container" style="background-color: blanchedalmond ;">
+    <div class="d-flex justify-content-center text-center">
+        <div  class="text-center">
+    <h1>Welcome {{users.first_name}}</h1>
+    <h3>All Posted Recipes:</h3>
+    </div>
+    <div style="margin-left: 20% ;" class="mt-5">
+    <a href="/recipes/new" class="btn btn-info">+ Create</a>
+    <a href="/logout" class="btn  btn-info">Logout</a>
+    </div>
+    </div>
+    
+    <table class="table table-striped w-75 mx-auto ">
+        <thead class="table-info">
+            <tr>
+                <th>Name</th>
+                <th>Under</th>
+                <th>Posted By</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for one_recipe in recipes %}
+            <tr>
+                <td>{{one_recipe.name}}</td>
+                {% if one_recipe.under30 == 1 %}
+                <td>Yes</td>
+                {% else %}
+                <td>No</td>
+                {% endif %}
+                <td>{{one_recipe.planner.first_name}}</td>
+                {% if users.id == one_recipe.user_id %}
+                <td><a href="/recipe/{{one_recipe.id}}">View Recipe</a> | <a href="/recipes/edit/{{one_recipe.id}}">Edit</a> | <a
+                        href="/delete/recipe/{{one_recipe.id}}">Delete</a></td>
+                {% else %}
+                <td><a href="/recipe/{{one_recipe.id}}">View Recipe</a></td>
+                {%endif%}
+                {%endfor%}
+            </tr>
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+</body>
